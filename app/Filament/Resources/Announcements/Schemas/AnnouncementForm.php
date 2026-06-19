@@ -2,8 +2,7 @@
 
 namespace App\Filament\Resources\Announcements\Schemas;
 
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Schemas\Schema;
 
 class AnnouncementForm
@@ -12,16 +11,29 @@ class AnnouncementForm
     {
         return $schema
             ->components([
-                TextInput::make('title')
-                    ->required(),
-                Textarea::make('content')
+                RichEditor::make('title')
+                    ->label('Judul Pengumuman')
+                    ->toolbarButtons([
+                        'bold',
+                        'italic',
+                        'underline',
+                        'strike',
+                    ])
                     ->required()
                     ->columnSpanFull(),
-                TextInput::make('users_id')
+                RichEditor::make('content')
+                    ->label('Isi Pengumuman')
+                    ->toolbarButtons([
+                        'bold',
+                        'italic',
+                        'underline',
+                        'strike',
+                        'bulletList',
+                        'orderedList',
+                        'link',
+                    ])
                     ->required()
-                    ->numeric(),
-                TextInput::make('slug')
-                    ->required(),
+                    ->columnSpanFull(),
             ]);
     }
 }
